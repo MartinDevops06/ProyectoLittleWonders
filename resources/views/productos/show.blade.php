@@ -26,11 +26,12 @@
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
             <div class="grid grid-cols-1 md:grid-cols-2">
                 
-                <div class="bg-pink-50 p-8 flex items-center justify-center">
-                    <img src="https://placehold.co/600x600/fce7f3/db2777?text={{ urlencode($producto->nombre) }}" 
-                         alt="{{ $producto->nombre }}" 
-                         class="max-w-full rounded-lg shadow-md">
+                <div class="bg-pink-50 h-96 md:h-full overflow-hidden">
+                    <img src="{{ asset('storage/FotoProductos/' . $producto->foto) }}" 
+                        alt="{{ $producto->nombre }}" 
+                        class="w-full h-full object-cover object-center">
                 </div>
+
 
                 <div class="p-8 md:p-12 flex flex-col justify-center">
                     <span class="text-pink-500 font-semibold tracking-wider text-sm uppercase mb-2">Maternidad</span>

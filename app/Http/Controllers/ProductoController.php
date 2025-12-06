@@ -29,7 +29,7 @@ class ProductoController extends Controller
 
         $productos = $query->orderBy('created_at', 'desc')->paginate(12);
 
-        return view('index', ['productos' => $productos]);    
+        return view('producto', ['productos' => $productos]);    
     }
 
     /**
@@ -50,7 +50,8 @@ class ProductoController extends Controller
             'nombre' => 'required|max:100',
             'descripcion' => 'required|max:150',
             'precio'=>'max:7',
-            'cantidad' => 'max:100'
+            'cantidad' => 'max:100',
+            'foto'
         ]);
 
         if ($validator->fails()) {
@@ -96,7 +97,8 @@ class ProductoController extends Controller
             'nombre' => 'required|max:100',
             'descripcion' => 'required|max:150',
             'precio' => 'max:7',
-            'cantidad' => 'max:100'
+            'cantidad' => 'max:100',
+            'foto'
         ]);
 
         if ($validator->fails()) {

@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Little Wonders | Maternidad y Amor</title>
+
+    <!-- Si NO usas Vite, activa Tailwind por CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+
     <style>
         /* Paleta suave para maternidad */
         .bg-brand { background-color: #fce7f3; } /* Rosa suave */
@@ -14,14 +18,17 @@
         .btn-primary:hover { background-color: #be185d; }
     </style>
 </head>
+
 <body class="bg-gray-50 font-sans">
 
+    <!-- HEADER (Basado en tu foto de referencia) -->
     <nav class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="{{ route('productos.index') }}" class="text-2xl font-bold text-brand flex items-center gap-2">
+            <a href="{{ route('home') }}" class="text-2xl font-bold text-brand flex items-center gap-2">
                 <i class="fa-solid fa-baby-carriage"></i> Little Wonders
             </a>
             
+
             <div class="hidden md:flex flex-1 mx-10">
                 <form action="{{ route('productos.index') }}" method="GET" class="w-full relative">
                     <input type="text" name="search" value="{{ request('search') }}" 
@@ -33,6 +40,15 @@
                 </form>
             </div>
 
+            <div class="bg-white">
+                <div class="container mx-auto px-4 py-3 overflow-x-auto whitespace-nowrap">
+                    <a href="{{ route('home') }}" class="inline-block px-4 py-1 text-gray-600 hover:text-brand text-sm font-medium">Home</a>
+                    <a href="?category=ropa" class="inline-block px-4 py-1 text-gray-600 hover:text-brand text-sm font-medium">Ropa</a>
+                    <a href="?category=juguetes" class="inline-block px-4 py-1 text-gray-600 hover:text-brand text-sm font-medium">Juguetes</a>
+                    <a href="?category=lactancia" class="inline-block px-4 py-1 text-gray-600 hover:text-brand text-sm font-medium">Madres</a>
+                </div>
+            </div>
+
             <div class="flex items-center gap-4">
                 <button class="relative text-gray-600 hover:text-brand transition">
                     <i class="fa-solid fa-cart-shopping text-xl"></i>
@@ -42,59 +58,76 @@
         </div>
     </nav>
 
-    <div class="bg-white border-b">
-        <div class="container mx-auto px-4 py-3 overflow-x-auto whitespace-nowrap">
-            <a href="{{ route('productos.index') }}" class="inline-block px-4 py-1 text-gray-600 hover:text-brand text-sm font-medium">Todo</a>
-            <a href="?category=ropa" class="inline-block px-4 py-1 text-gray-600 hover:text-brand text-sm font-medium">Ropa</a>
-            <a href="?category=juguetes" class="inline-block px-4 py-1 text-gray-600 hover:text-brand text-sm font-medium">Juguetes</a>
-            <a href="?category=lactancia" class="inline-block px-4 py-1 text-gray-600 hover:text-brand text-sm font-medium">Lactancia</a>
+
+    <!-- HERO PRINCIPAL -->
+    <section class="bg-white border-b py-12">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+
+            <!-- Texto CTA -->
+            <div class="w-full md:w-1/2 px-6 flex flex-col items-center text-center">
+                <h1 class="text-4xl font-bold text-pink-600 leading-tight">
+                    Bienvenida a Little Wonders
+                </h1>
+
+                <p class="text-gray-600 mt-4 text-lg">
+                    Encuentra ropa, accesorios y artículos pensados con amor para tu bebé y maternidad.
+                </p>
+
+                <a href="{{ route('productos.index') }}"
+                class="mt-6 inline-block bg-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-pink-700 transition">
+                    Ver catálogo
+                </a>
+            </div>
+
+
+            <!-- Imagen principal -->
+            <div class="w-full md:w-1/2 mt-10 md:mt-0 px-6">
+                <img src="{{ asset('storage/FotosPromocionales/LlamadoAccionIndex.png') }}"
+                    alt="Mamá con su bebé"
+                    class="rounded-xl shadow-md w-[60%] mx-auto object-cover">
+            </div>
         </div>
-    </div>
+    </section>
 
-    <main class="container mx-auto px-4 py-8">
-        
-        @if(request('search'))
-            <h2 class="text-xl text-gray-700 mb-6">Resultados para: <span class="font-bold">"{{ request('search') }}"</span></h2>
-        @endif
+    <!-- RECOMENDACIONES -->
+    <section class="py-14 bg-gray-200">
+        <div class="container mx-auto px-6">
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-10">
+                Recomendados para ti
+            </h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            @forelse($productos as $producto)
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden group border border-gray-100">
-                <div class="relative h-64 overflow-hidden bg-gray-100">
-                    <img src="https://placehold.co/400x400/fce7f3/db2777?text={{ urlencode($producto->nombre) }}" 
-                         alt="{{ $producto->nombre }}" 
-                         class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
-                    
-                    @if($producto->cantidad < 5)
-                        <span class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">¡Pocas unidades!</span>
-                    @endif
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+
+                @forelse ($productos as $producto)
+                <div class="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition">
+                    <img src="{{ asset('storage/FotoProductos/'.$producto->foto) }}" class="w-full h-56 object-cover rounded-lg" alt="{{ $producto->nombre }}">
+
+                    <h3 class="mt-4 text-lg font-semibold text-gray-700">
+                        {{ $producto->nombre }}
+                    </h3>
+
+                    <p class="text-gray-500 text-sm mt-1">
+                        {{ Str::limit($producto->descripcion, 80) }}
+                    </p>
+
+                    <p class="mt-3 font-bold text-pink-600 text-lg">
+                        ${{ number_format($producto->precio, 0, ',', '.') }}
+                    </p>
+
+                    <a href="{{ route('productos.show', $producto->id) }}"
+                        class="mt-3 block text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">
+                        Ver producto
+                    </a>
                 </div>
 
-                <div class="p-4">
-                    <h3 class="text-lg font-medium text-gray-800 truncate">{{ $producto->nombre }}</h3>
-                    <p class="text-sm text-gray-500 mt-1 line-clamp-2">{{ $producto->descripcion }}</p>
-                    
-                    <div class="mt-4 flex items-center justify-between">
-                        <span class="text-xl font-bold text-gray-900">${{ number_format($producto->precio, 0, ',', '.') }}</span>
-                        <a href="{{ route('productos.show', $producto->id) }}" class="text-brand text-sm font-medium hover:underline">
-                            Ver detalle
-                        </a>
-                    </div>
-                </div>
+                @empty
+                <p class="text-center col-span-3 text-gray-500">
+                    No hay productos disponibles aún.
+                </p>
+                @endforelse
             </div>
-            @empty
-            <div class="col-span-full text-center py-20">
-                <i class="fa-regular fa-face-sad-tear text-4xl text-gray-300 mb-4"></i>
-                <p class="text-gray-500">No encontramos productos con esa descripción.</p>
-                <a href="{{ route('productos.index') }}" class="text-brand font-bold mt-2 inline-block">Ver todo el catálogo</a>
-            </div>
-            @endforelse
         </div>
-
-        <div class="mt-8">
-            {{ $productos->links() }}
-        </div>
-    </main>
+    </section>
 
     <footer class="bg-white border-t mt-12 py-8 text-center text-gray-500 text-sm">
         <p>&copy; {{ date('Y') }} Little Wonders. Hecho con amor.</p>
