@@ -78,9 +78,18 @@
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <button class="flex-1 border-2 border-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:border-pink-500 hover:text-pink-500 transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
-                        </button>
+    
+                        {{-- 🛑 ESTE FORMULARIO ES VITAL 🛑 --}}
+                        <form action="{{ route('carrito.agregar', $producto->id) }}" method="POST" class="flex-1">
+                            @csrf
+                            
+                            <button type="submit" 
+                                class="w-full border-2 border-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:border-pink-500 hover:text-pink-500 transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
+                            </button>
+                        </form>
+                        
+                        {{-- Botón Comprar Ahora (sin cambios) --}}
                         <button class="flex-1 btn-primary py-3 rounded-lg font-semibold shadow-lg shadow-pink-200 flex items-center justify-center gap-2">
                             Comprar Ahora
                         </button>
