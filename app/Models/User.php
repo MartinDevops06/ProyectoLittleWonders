@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
     
     protected $fillable = [
         'name',
@@ -25,19 +26,17 @@ class User extends Authenticatable
         'is_admin' => 'boolean',
         'birth_date' => 'date'
     ];
-    
-    // Relación con Address
+
     public function addresses()
     {
         return $this->hasMany(Address::class);
     }
-    
-    // Dirección principal (si la tienes como campo)
+
     public function primaryAddress()
     {
         return $this->hasOne(Address::class)->where('is_primary', true);
     }
-    
+
     public function orders()
     {
         return $this->hasMany(Order::class);

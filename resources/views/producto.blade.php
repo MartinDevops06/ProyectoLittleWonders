@@ -188,7 +188,7 @@
             @forelse($productos as $producto)
             <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden group border border-gray-100">
                 <div class="relative h-64 overflow-hidden bg-gray-100">
-                    <img src="data:image/jpeg;base64,{{ $producto->foto }}" alt="Producto" 
+                    <img src="{{ asset('storage/ImagenesProductos/' . $producto->foto) }}" alt="Producto" 
                         class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                     @if($producto->stock)
                         @php

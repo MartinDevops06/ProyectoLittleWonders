@@ -12,22 +12,22 @@ class CategoriesSeeder extends Seeder
         DB::table('categories')->insert([
 
             [
-                'name' => 'Ropa',
-                'description' => 'Vestimenta para',
+                'name' => 'Embarazo y Madres',
+                'description' => 'Todo lo que necesitan nuestras madres',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
-                'name' => 'Juguetes',
-                'description' => 'Juguetes para el desarrollo de nuestros bebes',
+                'name' => 'Bebes',
+                'description' => 'Todo para el cuidado y bienestar de nuestros bebes',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
             [
-                'name' => 'Madres',
-                'description' => 'Todo para nuestras madres ',
+                'name' => 'Juguetes y Estimulacion',
+                'description' => 'Todo para el desarrollo de nuestros bebes ',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

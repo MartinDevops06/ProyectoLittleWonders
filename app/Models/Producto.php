@@ -16,7 +16,8 @@ class Producto extends Model
         'foto',
         'image',
         'gallery_images',
-        'brand'
+        'brand',
+        'classification'
     ];
     
     protected $casts = [

@@ -27,7 +27,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2">
                 
                 <div class="bg-pink-50 h-96 md:h-full overflow-hidden">
-                    <img src="data:image/jpeg;base64,{{ $producto->foto }}" 
+                    <img src="{{ asset('storage/ImagenesProductos/'. $producto->foto) }}" 
                         alt="{{ $producto->nombre }}" 
                         class="w-full h-full object-cover object-center">
                 </div>

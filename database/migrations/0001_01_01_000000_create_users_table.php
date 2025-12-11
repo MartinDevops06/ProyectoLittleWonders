@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('birth_date');
             $table->boolean('is_admin')->default(false);
             $table->timestamps();
+
         });
     }
 

@@ -208,14 +208,14 @@
     <section class="py-14 bg-gray-200">
         <div class="container mx-auto px-6">
             <h2 class="text-2xl font-bold text-center text-gray-800 mb-10">
-                Recomendados para ti
+                Recomendados
             </h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
 
                 @forelse ($productos as $producto)
                 <div class="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition">
-                    <img src="data:image/jpeg;base64,{{ $producto->foto }}" class="w-full h-56 object-cover rounded-lg" alt="{{ $producto->nombre }}">
+                    <img src="{{ asset('storage/ImagenesProductos/' . $producto->foto) }}" class="w-full h-56 object-cover rounded-lg" alt="{{ $producto->nombre }}">
 
                     <h3 class="mt-4 text-lg font-semibold text-gray-700">
                         {{ $producto->nombre }}

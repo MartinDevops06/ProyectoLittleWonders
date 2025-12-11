@@ -11,10 +11,11 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained('categories');
-            $table->string('nombre', 50);
-            $table->string('descripcion', 200);
+            $table->string('nombre', 150);
+            $table->string('descripcion', 500);
             $table->decimal('precio', 10, 2);
             $table->text('foto');
+            $table->string('classification', 50);
             $table->json('gallery_images')->nullable();
             $table->string('brand', 50)->nullable();
             $table->timestamps();

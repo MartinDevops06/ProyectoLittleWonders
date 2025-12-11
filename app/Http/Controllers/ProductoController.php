@@ -99,11 +99,13 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|max:100',
-            'descripcion' => 'required|max:150',
-            'precio' => 'max:7',
+            'nombre' => 'required|max:150',
+            'descripcion' => 'required|max:500',
+            'precio'=>'max:7',
             'cantidad' => 'max:100',
-            'foto'
+            'foto',
+            'brand' => 'max:50',
+            'classification' => 'max:50'
         ]);
 
         if ($validator->fails()) {
