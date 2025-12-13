@@ -56,34 +56,52 @@ use App\Models\Order;
 
     /*
     |--------------------------------------------------------------------------
-    | RUTAS DE login y register
+    | RUTAS DE login, register, editar, cerrar sesion
     |--------------------------------------------------------------------------
     */
 
+    //Crear Usuario
     Route::controller(UserController::class)->group(function () {
     Route::get('/user', 'index')->name('User');
     Route::get('/user/register', 'create')->name('registerUser');
     Route::post('/user/store', 'store')->name('storeUser');
     });
 
+    //Editar usuario
+    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('User.edit');
+    Route::put('/user/{id}', [UserController::class, 'update'])->name('User.update');
 
+    //Cerrar Sesion
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/user/address', [AddressController::class, 'index'])->name('address');
+    //Registrar Direcciones de usuario
+    Route::get('/user/address', [AddressController::class, 'index'])
+    ->middleware('auth')
+    ->name('address');
     Route::post('/direccion', [AddressController::class, 'store'])->name('address.store');
-
+    
     /*
     |--------------------------------------------------------------------------
-    | Autenticacion
+    | Autenticacion de Usuario
     |--------------------------------------------------------------------------
     */
+
     Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+    Route::get('/login', function () {
+        return redirect()->route('User');
+    });
+
+
 
     /*
     |--------------------------------------------------------------------------
     | Chechout y Pay
     |--------------------------------------------------------------------------
     */
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::get('/checkout', [CheckoutController::class, 'index'])
+    ->middleware('auth')
+    ->name('checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
     // Comprobante de orden

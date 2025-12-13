@@ -39,5 +39,21 @@ class AuthController extends Controller
         $_SESSION['username']=$request->name;
         return redirect()->route('home');
     }
+
+    public function logout(Request $request)
+    {
+        // Cerrar sesión del usuario
+        Auth::logout();
+
+        // Invalidar la sesión actual
+        $request->session()->invalidate();
+
+        // Regenerar el token CSRF
+        $request->session()->regenerateToken();
+
+        //Redirige a la pagina que se encontraba
+        return redirect()->back();
+
+    }
 }
 

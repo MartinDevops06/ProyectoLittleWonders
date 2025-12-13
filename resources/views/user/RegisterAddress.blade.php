@@ -113,18 +113,8 @@
                     </button>
                 </div>
             </form>
-
-
-            <!-- Link de volver a login -->
-            <p class="text-center mt-6 text-gray-600 text-sm">
-                ¿Ya tienes cuenta? 
-                <a href="Login.html" class="text-brand font-medium hover:underline">
-                    Inicia sesión
-                </a>
-            </p>
         </div>
     </div>
 
 </body>
 </html>
-
